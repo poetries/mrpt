@@ -1,17 +1,16 @@
-import {createStore,applyMiddleware,compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 import {createLogger } from 'redux-logger'
-import { routerMiddleware } from 'react-router-redux';
-import {BrowserRouter} from 'react-router-dom';
-import thunk from 'redux-thunk';
-import rootReducer from '../reduers/';
+import rootReducer from '../reducers'
+import api from '../middleware/api'
+import createHistory from 'history/createBrowserHistory'
 
-const middleware = routerMiddleware(BrowserRouter)
+const middleware = routerMiddleware(createHistory())
 
+const configureStore = preloadedState => createStore(
+  rootReducer,
+  preloadedState,
+  applyMiddleware(thunk, api,middleware)
+)
 
-const composedCreateStore = compose(
-    applyMiddleware(thunk,middleware,createLogger()),
-)(createStore);
-
-const configureStore = (initialState={}) => composedCreateStore(rootReducer,initialState);
-
-export default configureStore;
+export default configureStore

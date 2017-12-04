@@ -2,9 +2,8 @@ import React,{Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import './style';
 
-
 @withRouter
-export default class AuthRouter extends Component {
+export default class AuthRoute extends Component {
     state = {
         login:false,
         status:200,
@@ -13,6 +12,7 @@ export default class AuthRouter extends Component {
     render(){
         return (
             <div>
+
                
             </div>
         )

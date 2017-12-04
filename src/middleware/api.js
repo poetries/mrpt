@@ -1,6 +1,6 @@
-import {normalize, schema} from 'normalizr'
+// import {normalize, schema} from 'normalizr'
 import {camelizeKeys, decamelizeKeys} from 'humps'
-import {MSG_SHOW, MSG_INIT, popLogin,COMMON_FETCHING,COMMON_OVER} from '../actions/'
+import {MSG_SHOW, MSG_INIT} from '../constants/'
 import * as eCodeMsg from '../config/errorCode'
 import axios from 'axios'
 
@@ -10,7 +10,7 @@ const y = window.Y || {
     }
 export const API_ROOT = 'http://' + y.vars.apiDomain + '/v1/'
 
-const callApi = (endpoint, schema, query = null, isDownload = false) => {
+const callApi = (endpoint, query = null, isDownload = false) => {
     let fullUrl = endpoint
     const {method = 'get', data , headers = {}} = query || {}
 	// const data = {}
@@ -93,16 +93,17 @@ const callApi = (endpoint, schema, query = null, isDownload = false) => {
                     return Promise.reject({data: json})
                 }
                 const camelizedJson = camelizeKeys(json.data)
-                if (typeof schema === 'object') {
-                    return Object.assign({},
-                        normalize(camelizedJson, schema)
-                    )
-                } else if (typeof schema === 'string') {
-                    return Object.assign({}, {
-                        [schema]: camelizedJson
-                    }, {})
-                }
-                return json
+                // if (typeof schema === 'object') {
+                //     return Object.assign({},
+                //         normalize(camelizedJson, schema)
+                //     )
+                // } else if (typeof schema === 'string') {
+                //     return Object.assign({}, {
+                //         [schema]: camelizedJson
+                //     }, {})
+                // }
+                return camelizedJson
+                // return json
                 
             },
             error => {
@@ -124,7 +125,7 @@ export default store => next => action => {
     }
 
     let {endpoint} = callAPI
-    const {schema, types, query} = callAPI
+    const { types, query} = callAPI
     if (typeof endpoint === 'function') {
         endpoint = endpoint(store.getState())
     }
@@ -132,9 +133,9 @@ export default store => next => action => {
     if (typeof endpoint !== 'string') {
         throw new Error('Specify a string endpoint URL.')
     }
-    if (!schema) {
-        throw new Error('Specify one of the exported Schemas.')
-    }
+    // if (!schema) {
+    //     throw new Error('Specify one of the exported Schemas.')
+    // }
     // if (!Array.isArray(types) || types.length !== 3) {
     if (!Array.isArray(types)) {
         throw new Error('Expected an array of action types.')
@@ -159,37 +160,37 @@ export default store => next => action => {
 
     if (types.length === 1) {
         const isDownload = true
-        return callApi(endpoint, schema, query, isDownload)
+        return callApi(endpoint, query, isDownload)
     }
     
     const [requestType, successType, failureType] = types
     next(actionWith({type: requestType}))
-    next({type:COMMON_FETCHING})
+    // next({type:COMMON_FETCHING})
 
-    return callApi(endpoint, schema, query).then(
+    return callApi(endpoint, query).then(
         response => {
-            if (popUpMsgWhenSuccess) {
-                next({
-                    type: MSG_SHOW,
-                    msg: popUpMsgWhenSuccess,
-                    showType : 'success'
-                })
-
-                setTimeout(() => {
-                    next({
-                        type : MSG_INIT
-                    })
-                },350)
-            }
+            // if (popUpMsgWhenSuccess) {
+            //     next({
+            //         type: MSG_SHOW,
+            //         msg: popUpMsgWhenSuccess,
+            //         showType : 'success'
+            //     })
+			//
+            //     setTimeout(() => {
+            //         next({
+            //             type : MSG_INIT
+            //         })
+            //     },350)
+            // }
             next(actionWith({
                 response,
                 type: successType
             }))
-            setTimeout(()=>{
-                next({
-                    type : COMMON_OVER
-                })
-            },1500)
+            // setTimeout(()=>{
+            //     next({
+            //         type : COMMON_OVER
+            //     })
+            // },1500)
 
             return response
         },
@@ -198,7 +199,7 @@ export default store => next => action => {
             const {code,message, status} = error.data
             if (status === 401) {
                 if (window.Y.DEBUG) {
-                    next(popLogin())
+                    // next(popLogin())
                 } else {
                     window.location = '/'
                 }
@@ -212,14 +213,14 @@ export default store => next => action => {
                 type: failureType,
                 response: error
             }))
-            setTimeout(() => {
-                next({
-                    type : MSG_INIT
-                })
-                next({
-                    type : COMMON_OVER
-                })
-            },1500)
+            // setTimeout(() => {
+            //     next({
+            //         type : MSG_INIT
+            //     })
+            //     // next({
+            //     //     type : COMMON_OVER
+            //     // })
+            // },1500)
 
             return error
         }
