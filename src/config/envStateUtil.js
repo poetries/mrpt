@@ -1,17 +1,15 @@
-/**
- * Created by zorochen on 2017/6/17.
+/*
+ * @Author: poetryxie 
+ * @Date: 2017-12-05 10:09:12 
+ * @Last Modified by: poetryxie
+ * @Last Modified time: 2017-12-05 20:53:56
  */
-import {CAMPAIGNTYPE, DURATIONTYPE, BIZTYPE, BIZIDNAME} from './bizMapping'
-import {camelizeKeys, decamelizeKeys} from 'humps'
+
 import moment from 'moment'
 
-const y = window.Y || {}
 export const getInitEnvState = () => {
-	let campaignType = CAMPAIGNTYPE.BID
-	if(location.href.indexOf('campaignType=2') !== -1){
-		campaignType = CAMPAIGNTYPE.AGREEMENT
-	}
-	let reportDate = window.localStorage.getItem('REPORT_DATE')
+	let reportDate = window.localStorage.getItem('__REPORTDATE__')
+
 	if(!reportDate){
 		reportDate = {
 			beginDate : moment().format('YYYYMMDD'),
@@ -20,11 +18,12 @@ export const getInitEnvState = () => {
 	}else{
 		reportDate = JSON.parse(reportDate)
 	}
-
+	let envObject = {
+		customerId:1,
+		adnetwork:103
+	}
 	return {
-		envState :{
-			campaignType,
-		},
-		reportDate
+		reportDate,
+		envObject
 	}
 }

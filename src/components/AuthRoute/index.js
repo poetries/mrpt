@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import './style';
+import {doLogin, loadCode} from '../../containers/Login/subpage'
 
 @withRouter
 export default class AuthRoute extends Component {
@@ -10,24 +10,22 @@ export default class AuthRoute extends Component {
         code:1
     }
     render(){
-        return (
-            <div>
-
-               
-            </div>
-        )
+        return null
     }
     componentDidMount(){
-        const publicList = ['/login'];
-        const pathname = this.props.location.pathname;
-        console.log(pathname)
-        if (publicList.indexOf(pathname)>-1) {
-            return null;
-        }
-        if (this.state.status === 200 && this.state.status ==0) {
-            this.props.history.push('/')
+        const cookie = document.cookie
+        if (cookie) {
+            cookie.split(';').forEach(v => {
+                console.log()
+                if (v.indexOf('user_id') !== -1) {
+                    const user_id = v.replace(/user_id=/, '')
+                    user_id? this.props.history.push('/dashboard'):this.props.history.push('/login')
+                }
+
+            })
         } else {
             this.props.history.push('/login')
-        }
+        }   
+
     }
 }

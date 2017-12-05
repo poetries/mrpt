@@ -1,4 +1,10 @@
-export  const SET_USER = 'SET_USER';
+/*
+ * @Author: poetryxie 
+ * @Date: 2017-12-05 10:30:38 
+ * @Last Modified by:   poetryxie 
+ * @Last Modified time: 2017-12-05 10:30:38 
+ */
+
 export const MSG_SHOW = 'MSG_SHOW'
 export const MSG_INIT = 'MSG_INIT'
 

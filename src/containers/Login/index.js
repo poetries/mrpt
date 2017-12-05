@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
-import './style';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { Component } from 'react';
+import LoginModal from '../../components/Login' 
+import {doLogin, loadCode} from './subpage'
 
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-      }
+class Login extends Component {
     render() {
         return (
             <div>
-                login页面
+                <LoginModal doLogin={doLogin} loadCode={loadCode}/>
             </div>
-        )
+        );
     }
 }
+
+export default Login;

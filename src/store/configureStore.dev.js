@@ -13,7 +13,6 @@ const configureStore = preloadedState => {
 	
 	// 安装 Redux-DevTools Chrome 插件后可用 composeEnhancers()
 	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
 	const store = createStore(
 		rootReducer,
 		preloadedState,

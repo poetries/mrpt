@@ -3,6 +3,7 @@ import CALL_API from '../middleware/api'
 
 export const fetchConsumeSummaryReports = () => (dispatch,getState) =>{
 
+	console.log(getState())
 	const {reportDate , envObject} = getState()
 	const {customerId,adnetwork} = envObject
 	const {beginDate,endDate} =reportDate
