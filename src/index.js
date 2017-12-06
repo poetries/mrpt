@@ -12,4 +12,5 @@ import 'antd-mobile/dist/antd-mobile.css';
 const initState = getInitEnvState()
 const store = configureStore({...initState})
 
+
 ReactDOM.render(<Root store={store} />, document.getElementById('root'));

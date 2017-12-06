@@ -2,7 +2,7 @@
  * @Author: poetryxie 
  * @Date: 2017-12-05 10:09:12 
  * @Last Modified by: poetryxie
- * @Last Modified time: 2017-12-05 20:53:56
+ * @Last Modified time: 2017-12-06 15:29:19
  */
 
 import moment from 'moment'
@@ -12,14 +12,14 @@ export const getInitEnvState = () => {
 
 	if(!reportDate){
 		reportDate = {
-			beginDate : moment().format('YYYYMMDD'),
+			beginDate : '20170806',
 			endDate   : moment().format('YYYYMMDD')
 		}
 	}else{
 		reportDate = JSON.parse(reportDate)
 	}
 	let envObject = {
-		customerId:1,
+		customerId:'',
 		adnetwork:103
 	}
 	return {

@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/'
-import CALL_API from '../middleware/api'
+import {CALL_API} from '../middleware/api'
 
 export const fetchConsumeSummaryReports = () => (dispatch,getState) =>{
 
@@ -10,6 +10,7 @@ export const fetchConsumeSummaryReports = () => (dispatch,getState) =>{
 	return dispatch({
 		reportDate,
 		[CALL_API] : {
+			endpoint : 'consume-summary-reports',
 			types : [ActionTypes.FETCH_CONSUME_SUMMARY_REPORT_REQUEST,
 					ActionTypes.FETCH_CONSUME_SUMMARY_REPORT_SUCCESS,
 					ActionTypes.FETCH_CONSUME_SUMMARY_REPORT_FAILURE

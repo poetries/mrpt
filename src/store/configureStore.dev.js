@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import {createLogger } from 'redux-logger'
 import api from '../middleware/api'
-import rootReducer from '../reducers'
 import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
-
+import rootReducer from '../reducers'
+import {loginAfter} from '../actions'
 
 const middleware = routerMiddleware(createHistory())
 
@@ -19,7 +19,9 @@ const configureStore = preloadedState => {
 		composeEnhancers(
 			applyMiddleware(thunk,api,middleware, createLogger())
 		)
-	)
+	)    
+
+	store.dispatch(loginAfter({accountId:9990001}))
 
 	if (module.hot) {
 		// Enable Webpack hot module replacement for reducers

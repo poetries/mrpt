@@ -9,7 +9,7 @@ import {fetchConsumeSummaryReports} from '../actions'
     fetchConsumeSummaryReports
   }
 )
-export default class NotFindPage extends Component {
+export default class DashBoard extends Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
@@ -22,7 +22,6 @@ export default class NotFindPage extends Component {
     )
   }
   componentDidMount(){
-    console.log(this.props)
     this.props.fetchConsumeSummaryReports()
   }
 }

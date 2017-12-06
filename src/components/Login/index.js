@@ -2,7 +2,7 @@
  * @Author: poetryxie 
  * @Date: 2017-12-05 10:35:06 
  * @Last Modified by: poetryxie
- * @Last Modified time: 2017-12-05 20:11:59
+ * @Last Modified time: 2017-12-06 14:35:09
  */
 
 import React from 'react'
@@ -41,6 +41,7 @@ export default  class LoginModal extends React.Component {
 		this.props.doLogin(email, password, code).then((res) => {
 			if(res.user_id){
 				// window.location.reload()
+				console.log(res)
 				this.props.history.push('/dashboard')
 			}
 		}).catch( (error) => {
