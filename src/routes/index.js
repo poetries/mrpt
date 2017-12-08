@@ -1,32 +1,12 @@
 import React from 'react';
 import {Route,BrowserRouter as Router, Switch} from 'react-router-dom'; 
-import Dashboard from '../containers/Dashboard';
-import AuthRoute from '../components/AuthRoute';
-import Login from '../containers/Login';
-import Search from '../containers/Search';
-import Customer from '../containers/Customer';
+import AuthRoute from '@/components/AuthRoute';
+import {routeRules} from '@/config/routeRules'
 
-const routeRules = [
-    {
-      path:'/login',
-      component:Login,
-      exact:true
-    },
-    {
-      path:'/search/:keyword',
-      component:Search,
-      exact:false
-    },
-    {
-      path:'',
-      component:Dashboard,
-      exact:false
-    }
-]
 const routeMap = (
     <Router>
         <div>
-            <AuthRoute /> {/*授权路由，验证用户登录信息*/}
+            <AuthRoute />
             <Switch>
                 {routeRules.map(v=>(
                     <Route 

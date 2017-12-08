@@ -10,7 +10,7 @@ export default class TimerPicker extends Component {
     render() {
         return (
             <div>
-                top5
+                top5排行
             </div>
         )
     }

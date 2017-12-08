@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './style';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Item from './Item'
 
 export default class List extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export default class List extends Component {
     render() {
         return (
             <div>
-                客户列表数据展示
+                <Item />
             </div>
         )
     }

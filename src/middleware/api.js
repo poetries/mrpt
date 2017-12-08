@@ -200,6 +200,7 @@ export default store => next => action => {
             if (status === 401) {
                 if (window.Y.DEBUG) {
                     // next(popLogin())
+                    window.location = '/login'
                 } else {
                     window.localStorage.setItem()
                     window.location = '/'

@@ -1,9 +1,10 @@
-/**
- * Created by zorochen on 2017/7/27.
+/*
+ * @Author: poetryxie 
+ * @Date: 2017-12-05 10:34:53 
+ * @Last Modified by: poetryxie
+ * @Last Modified time: 2017-12-07 10:58:09
  */
-/**
- * Created by zorochen on 2017/5/7.
- */
+
 import axios from 'axios'
 // import crypro from 'crypto-js'
 import md5 from 'md5'
@@ -15,7 +16,7 @@ n7W//w4wjXH+F/CP0S8SEuJ/JLYoo79/DgPz7i6odx+OxmWQO2WPK7aDLauJLczn
 m3Xp/Ek31PDcsEZWJvLyAEgP8wfWnLD7CGsAXhE0b50PMZ5C8/zoN3j+wop6e/Rv
 ww8+cvkfYTCdLzugLQIDAQAB
 -----END PUBLIC KEY-----`
-const host =  location.host;//'localhost:3000'
+const host =  window.location.host;//'localhost:3000'
 const OAUTH_API = `http://${host}/v1`
 const APP_API = `http://${host}`
 export const loadCode = () => {

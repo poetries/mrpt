@@ -2,13 +2,14 @@
  * @Author: poetryxie 
  * @Date: 2017-12-05 10:35:06 
  * @Last Modified by: poetryxie
- * @Last Modified time: 2017-12-06 14:35:09
+ * @Last Modified time: 2017-12-08 16:35:16
  */
 
 import React from 'react'
 import { Button, WhiteSpace, List, InputItem, WingBlank} from 'antd-mobile';
 // import {Col, Modal, Row,Button as Butt} from 'react-bootstrap'
 import {withRouter} from 'react-router-dom';
+import {Wrapper} from './style'
 
 @withRouter
 export default  class LoginModal extends React.Component {
@@ -72,7 +73,7 @@ export default  class LoginModal extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<Wrapper>
 				{/* <Modal
 					show={true}
 					onHide={() => {
@@ -155,7 +156,7 @@ export default  class LoginModal extends React.Component {
 					>登录</Button>
 					<WhiteSpace />
 				</WingBlank>
-			</div>
+			</Wrapper>
 		)
 	}
 }
