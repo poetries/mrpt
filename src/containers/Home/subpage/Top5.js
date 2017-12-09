@@ -7,7 +7,7 @@ export default class Top5 extends Component {
     return (
       <div>
         <RankTop5 />
-        <CustomerDetail />
+        {/* <CustomerDetail /> */}
       </div>
     )
   }
