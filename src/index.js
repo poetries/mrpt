@@ -6,8 +6,9 @@ import Root from './containers/Root'
 import configureStore from './store/configureStore';
 import {getInitEnvState} from './config/envStateUtil'
 import './config/Interceptors'
-import './index.css'
+import 'antd/dist/antd.css';
 import 'antd-mobile/dist/antd-mobile.css';
+import './index.css'
 
 const initState = getInitEnvState()
 const store = configureStore({...initState})
