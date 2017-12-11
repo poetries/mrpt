@@ -11,6 +11,11 @@ export const routeRules = [
       exact:true
     },
     {
+      path:'/customer-detail/:id',
+      component:require('@/components/CustomerDetail').default,
+      exact:true
+    },
+    {
       path:'',
       component:require('@/components/DashBoard').default,
       exact:false

@@ -6,12 +6,13 @@ import Cost from './subpage/Cost'
 import ListCard from './subpage/ListCard'
 import {Wrapper} from './subpage/style'
 
+
 export default class Home extends Component {
     constructor(props) {
       super(props);
       this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
-    render() {
+    render() {       
         return (
             <Wrapper>
                 <DatePicker />

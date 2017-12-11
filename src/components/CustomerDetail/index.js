@@ -7,13 +7,12 @@ export default class CustomerDetail extends Component {
   render() {
     return (
       <div>
-            点击top5排行榜展开客户详情
             <NavBar
                 mode="dark"
                 icon={<Icon type="left" />}
-                onLeftClick={() => console.log('onLeftClick')}
+                onLeftClick={() => this.props.history.push(`/dashboard`)}
                 rightContent='广点通'
-                >top5中的xx客户详情页</NavBar>
+                >{this.props.match.params.id}</NavBar>
             <DatePicker />
             <Chart />
       </div>

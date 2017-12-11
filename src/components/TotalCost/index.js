@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { List } from 'antd-mobile';
+
 
 class TotalCost extends Component {
     render() {
+        const cost = '5123.66￥'
         return (
             <div>
-                总消耗
+                <List>
+                    <List.Item extra={cost}>总消耗</List.Item>
+                </List>
             </div>
         );
     }

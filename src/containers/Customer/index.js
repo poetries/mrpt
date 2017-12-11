@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { NavBar, Icon } from 'antd-mobile';
 import DatePicker from '@/components/DatePicker'
 import List from './subpage/List'
+import {ContentWrapper,Wrapper} from './subpage/style'
 
 export default class Customer extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ export default class Customer extends Component {
     }
     render() {
         return (
-            <div>
+            <Wrapper>
                 <NavBar
                     mode="dark"
                     rightContent={[
@@ -23,9 +24,12 @@ export default class Customer extends Component {
                         />,
                     ]}
                     >客户</NavBar>
-                <DatePicker />
-                <List/>   
-            </div>
+                <ContentWrapper>
+                    <DatePicker />
+                    <List/>  
+                </ContentWrapper>    
+                
+            </Wrapper>
         )
     }
 }

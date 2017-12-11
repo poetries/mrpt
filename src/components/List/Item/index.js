@@ -1,14 +1,29 @@
 import React, { Component } from 'react'
 import DataCardList from '@/components/DataCardList'
+import { Accordion, List,Toast } from 'antd-mobile';
+import {Wrapper} from './style'
 
 export default class Item extends Component {
+  onChange = (key) => {
+    console.log(key);
+  }
   render() {
     return (
-      <div>
-         每一的客户列表数据展示
-         {/*点击每一项item展开列表*/}
-         {/* <DataCardList /> */}
-      </div>
+      <Wrapper>
+        {this.props.data?this.props.data.map((v,index)=>(
+          <Accordion onChange={this.onChange}>
+            <Accordion.Panel header={
+              <List>
+                <List.Item extra={v.sub}>{v.title}</List.Item>
+              </List>
+            }>
+              <List>
+                <List.Item>{<DataCardList />}</List.Item>
+              </List>
+            </Accordion.Panel>
+          </Accordion>
+        )):Toast.loading('加载中...',0) }
+      </Wrapper>
     )
   }
 }

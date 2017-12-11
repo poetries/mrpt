@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import './style';
+import {TabFlex} from './style';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { DatePicker,List,WingBlank, WhiteSpace} from 'antd-mobile';
+import { DatePicker, List,Flex,Button,Tabs } from 'antd-mobile';
+import {DateWrapper} from './style'
 
-const now = new Date(Date.now());
+const nowTimeStamp = Date.now();
+const now = new Date(nowTimeStamp);
 
 export default class TimerPicker extends Component {
     constructor(props) {
@@ -11,22 +13,34 @@ export default class TimerPicker extends Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
     state = {
-        date: now,
-        time: now
+        date: now
     }
     render() {
-        console.log(this.state.date)
+        const tabs = [
+            { title: '昨天', sub: '1' },
+            { title: '最近7天', sub: '2' },
+            { title: '最近30天', sub: '3' },
+          ];
         return (
-            <WingBlank>
-                <DatePicker
-                    mode="date"
-                    extra="自定义"
-                    value={this.state.date}
-                    onChange={date => this.setState({ date })}
-                >
-                    <List.Item arrow="horizontal">Date</List.Item>
-                </DatePicker>
-            </WingBlank>
+            <div>
+                <Tabs tabs={tabs}
+                    initialPage={0}
+                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+                />
+                {/* <Button type="ghost" inline size="small"  style={{ marginRight: '4px' }}>昨天</Button>
+                <Button type="ghost" inline size="small" style={{ marginRight: '4px' }} >最近7天</Button>
+                <Button type="ghost" inline size="small" >最近30天</Button> */}
+                <DateWrapper>
+                    <DatePicker
+                        mode="date"
+                        extra="Optional"
+                        value={this.state.date}
+                        onChange={date => this.setState({ date })}
+                    >
+                    <Button type="primary" inline size="small" >自定义</Button>
+                    </DatePicker>
+                </DateWrapper>
+            </div>
         )
     }
 }
