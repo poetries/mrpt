@@ -45,9 +45,9 @@ export default class Home extends Component {
         )
     }
     componentDidMount(){
-        const time = getThirtyDays()
+        const time = getYesterday()
         this.props.changeReportDate(time.b,time.e)
-        this.props.fetchConsumeSummaryReports()
+        // this.props.fetchConsumeSummaryReports()
         // this.props.fetchConsumeConsumeReports()
         // this.props.fetchSeachConsumer()
     }
