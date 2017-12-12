@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {Flex } from 'antd-mobile';
+import {WingBlank } from 'antd-mobile';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(WingBlank)`
   
 `
 

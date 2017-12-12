@@ -1,23 +1,12 @@
 import React, { Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import styled from 'styled-components'
-import {connect} from 'react-redux'
 import {NavBar} from 'antd-mobile'
 import {Route,Switch,Redirect} from 'react-router-dom'
 import NavFooterBar from './NavFooterBar'
 import Customer from '@/containers/Customer';
 import Home from '@/containers/Home'
-import {fetchConsumeSummaryReports,fetchConsumeConsumeReports,fetchSeachConsumer} from '@/actions'
 import {navList} from '@/config/routeRules'
-
-@connect(
-  state=>state,
-  {
-    fetchConsumeSummaryReports,
-    fetchConsumeConsumeReports,
-    fetchSeachConsumer
-  }
-)
 
 export default class DashBoard extends Component {
   constructor(props) {
@@ -49,8 +38,5 @@ export default class DashBoard extends Component {
     )
   }
   componentDidMount(){
-    // this.props.fetchConsumeSummaryReports()
-    // this.props.fetchConsumeConsumeReports()
-    // this.props.fetchSeachConsumer()
   }
 }

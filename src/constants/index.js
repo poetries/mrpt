@@ -2,7 +2,7 @@
  * @Author: poetryxie 
  * @Date: 2017-12-05 10:30:38 
  * @Last Modified by: poetryxie
- * @Last Modified time: 2017-12-07 10:45:28
+ * @Last Modified time: 2017-12-12 16:33:37
  */
 
 export const MSG_SHOW = 'MSG_SHOW'
@@ -26,3 +26,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+
+export const CHANGE_REPORT_DATE = 'CHANGE_REPORT_DATE'

@@ -11,6 +11,11 @@ export const routeRules = [
       exact:true
     },
     {
+      path:'/search/:customer_name',
+      component:require('@/components/SearchList').default,
+      exact:true
+    },
+    {
       path:'/customer-detail/:id',
       component:require('@/components/CustomerDetail').default,
       exact:true

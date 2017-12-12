@@ -5,7 +5,7 @@ export default class Cost extends Component {
   render() {
     return (
       <div>
-            <TotalCost />
+            <TotalCost data={this.props.data}/>
       </div>
     )
   }

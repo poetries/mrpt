@@ -3,6 +3,11 @@ import {TabFlex} from './style';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { DatePicker, List,Flex,Button,Tabs } from 'antd-mobile';
 import {DateWrapper} from './style'
+import  {
+    getYesterday,
+    getSevenDays,
+    getThirtyDays
+} from '@/utils/getDate'
 
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
@@ -17,9 +22,9 @@ export default class TimerPicker extends Component {
     }
     render() {
         const tabs = [
-            { title: '昨天', sub: '1' },
-            { title: '最近7天', sub: '2' },
-            { title: '最近30天', sub: '3' },
+            { title: '昨天', sub: getYesterday() },
+            { title: '最近7天', sub: getSevenDays() },
+            { title: '最近30天', sub: getThirtyDays() }
           ];
         return (
             <div>

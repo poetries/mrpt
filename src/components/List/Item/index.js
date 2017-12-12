@@ -11,7 +11,7 @@ export default class Item extends Component {
     return (
       <Wrapper>
         {this.props.data?this.props.data.map((v,index)=>(
-          <Accordion onChange={this.onChange}>
+          <Accordion onChange={this.onChange} key={index}>
             <Accordion.Panel header={
               <List>
                 <List.Item extra={v.sub}>{v.title}</List.Item>

@@ -2,7 +2,7 @@
  * @Author: poetryxie 
  * @Date: 2017-12-05 10:35:06 
  * @Last Modified by: poetryxie
- * @Last Modified time: 2017-12-08 16:35:16
+ * @Last Modified time: 2017-12-12 09:56:26
  */
 
 import React from 'react'
@@ -10,6 +10,7 @@ import { Button, WhiteSpace, List, InputItem, WingBlank} from 'antd-mobile';
 // import {Col, Modal, Row,Button as Butt} from 'react-bootstrap'
 import {withRouter} from 'react-router-dom';
 import {Wrapper} from './style'
+import logoImg from './logo.png'
 
 @withRouter
 export default  class LoginModal extends React.Component {
@@ -126,9 +127,13 @@ export default  class LoginModal extends React.Component {
 
 
 				<WhiteSpace />
-				<h2>登录</h2>
+				<WhiteSpace />
 				<WhiteSpace />
 				<WingBlank>
+					<img src={logoImg} style={{height:'50px'}} alt='logo' />
+					<WhiteSpace />
+					<WhiteSpace />
+					<WhiteSpace />
 					<List>
 						<InputItem
 							placeholder="邮箱"

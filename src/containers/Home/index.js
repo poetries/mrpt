@@ -4,9 +4,31 @@ import DatePicker from '@/components/DatePicker'
 import Top5 from './subpage/Top5'
 import Cost from './subpage/Cost'
 import ListCard from './subpage/ListCard'
+import {connect} from 'react-redux'
 import {Wrapper} from './subpage/style'
+import  {
+    getYesterday,
+    getSevenDays,
+    getThirtyDays
+} from '@/utils/getDate'
+import {
+    fetchConsumeSummaryReports,
+    fetchConsumeConsumeReports,
+    fetchSeachConsumer,
+    changeReportDate
+} from '@/actions'
 
 
+@connect(
+    state=>state.consumeSummaryReports,
+    {
+      fetchConsumeSummaryReports,
+      fetchConsumeConsumeReports,
+      fetchSeachConsumer,
+      changeReportDate
+    }
+)
+  
 export default class Home extends Component {
     constructor(props) {
       super(props);
@@ -16,10 +38,17 @@ export default class Home extends Component {
         return (
             <Wrapper>
                 <DatePicker />
-                <Cost />
+                <Cost data={this.props.data}/>
                 <ListCard />
                 <Top5 />
             </Wrapper>
         )
+    }
+    componentDidMount(){
+        const time = getThirtyDays()
+        this.props.changeReportDate(time.b,time.e)
+        this.props.fetchConsumeSummaryReports()
+        // this.props.fetchConsumeConsumeReports()
+        // this.props.fetchSeachConsumer()
     }
 }
