@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import {WingBlank  } from 'antd-mobile';
 
-export const Wrapper = styled(WingBlank)`
-    margin-top:10px;
+export const Wrapper = styled.div`
     background-color:#fff;
     .tag-container {
         display: flex;
