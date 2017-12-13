@@ -12,17 +12,23 @@ export default class Search extends Component {
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
+    state = {
+        flag:true
+    }
     handleSubmit(val){
         if (!val) return;
         console.log(val)
-        this.props.history.push(`/search/${Date.now()}`)
+        this.setState({
+            flag:!this.state.flag
+        })
+        // this.props.history.push(`/search/${Date.now()}`)
     }
     render() {
        
         return (
             <Wrapper>
                 <SearchInput handleSubmit={this.handleSubmit.bind(this)}/>
-                <History />
+                {this.state.flag?<History />:null}
                 
             </Wrapper>
         )
