@@ -1,60 +1,126 @@
 import React, { Component } from 'react'
-import {TabFlex} from './style';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { DatePicker, List,Flex,Button,Tabs } from 'antd-mobile';
-import {DateWrapper} from './style'
+import { DatePicker, List,Flex,Button,Tabs,WhiteSpace  } from 'antd-mobile';
+import {Icon,Row,Col} from 'antd'
+import {Wrapper,ModalWrapper,ButtonWrapper} from './style'
 import {connect} from 'react-redux'
+import moment from 'moment';
 import  {
     getYesterday,
     getSevenDays,
-    getThirtyDays
+    getThirtyDays,
+    formatDate
 } from '@/utils/getDate'
-import {
-    changeReportDate
-} from '@/actions'
 
 
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
-
-@connect(
-    state=>state.consumeSummaryReports,
-    {
-      changeReportDate
-    }
-)
 export default class TimerPicker extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.ChangeDate = this.ChangeDate.bind(this)
+        this.state = {
+            date1:now,
+            date2:now,
+            modalVisible: false,
+            beginDate:'',
+            endDate:''
+        }
+    }
+    ChangeDate(beginDate,endDate){
+        const {
+            changeReportDate,
+            // fetchConsumeSummaryReports,
+            fetchConsumeConsumeReports,
+            fetchAdnetworkConsumeReports
+        } = this.props
+
+        changeReportDate(beginDate,endDate)
+        // fetchConsumeSummaryReports()
+        const pathname = window.location.pathname
+        if (pathname==='/') {
+            fetchConsumeConsumeReports()
+        } else if (pathname==='/customer') {
+            fetchConsumeConsumeReports('','')
+        }
+        fetchAdnetworkConsumeReports()
+    }
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
+    }
+    handleClick(){
+        this.setModalVisible(true)
     }
     render() {
         const tabs = [
             { title: '昨天', sub: getYesterday() },
             { title: '最近7天', sub: getSevenDays() },
-            { title: '最近30天', sub: getThirtyDays() }
+            { title: '最近30天', sub: getThirtyDays() },
+            { title: '自定义', sub: 4 }
           ];
-         
+        
         return (
             <div>
                 <Tabs tabs={tabs}
-                    initialPage={0}
-                    onTabClick={(tab, index) => { 
-                        this.props.changeReportDate(tab.sub.b,tab.sub.e)
-                     }}
-                />
-                {/* <Button type="ghost" inline size="small"  style={{ marginRight: '4px' }}>昨天</Button>
-                <Button type="ghost" inline size="small" style={{ marginRight: '4px' }} >最近7天</Button>
-                <Button type="ghost" inline size="small" >最近30天</Button> */}
-                <DateWrapper>
-                    <DatePicker
-                        mode="date"
-                        extra="Optional"
-                        onChange={date => console.log(date)}
+                            initialPage={0}
+                            onTabClick={tab => {
+                                if(tab.sub===4) {
+                                    this.setModalVisible(true)
+                                } else {
+                                    this.ChangeDate(tab.sub.b,tab.sub.e)
+                                }
+                            }}
+                         />
+                <WhiteSpace />
+                <ModalWrapper
+                    title={<span style={{color:'#fff'}}>投放日期</span>}
+                    style={{ top: -10}}
+                    bodyStyle={{background:'#f5f5f9'}}
+                    wrapClassName="投放日期"
+                    maskClosable={false}
+                    okText='完成'
+                    closable={false}
+                    cancelText={<Icon type="arrow-left" />}
+                    maskStyle={{background:'#f5f5f9'}}
+                    visible={this.state.modalVisible}
+                    onOk={() => {
+                        this.setModalVisible(false)
+                        //this.ChangeDate(this.state.beginDate,this.state.endDate)
+                    }}
+                    onCancel={() => {
+                        this.setModalVisible(false)
+                    }}
                     >
-                    <Button type="primary" inline size="small" >自定义</Button>
-                    </DatePicker>
-                </DateWrapper>
+                    <Wrapper>
+                        <DatePicker
+                            mode="date"
+                            extra="Optional"
+                            format
+                            value={this.state.date1}
+                            onChange={date1 => {
+                                this.setState({ date1 })
+                                this.setState({ beginDate:moment(date1).format('YYYYMMDD') })
+                            }}
+                        >
+                        <List.Item arrow="horizontal">开始日期</List.Item>
+                        </DatePicker>
+                        <WhiteSpace />
+                        <DatePicker
+                            mode="date"
+                            extra="Optional"
+                            format
+                            value={this.state.date2}
+                            onChange={date2 => {
+                                this.setState({ date2 })
+                                this.setState({ endDate: moment(date2).format('YYYYMMDD')})
+                            }}
+                        >
+                        <List.Item arrow="horizontal">结束日期</List.Item>
+                        </DatePicker>
+                    </Wrapper>
+                </ModalWrapper>
+                
             </div>
         )
     }

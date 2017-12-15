@@ -21,7 +21,6 @@ export default class Search extends Component {
         this.setState({
             flag:!this.state.flag
         })
-        // this.props.history.push(`/search/${Date.now()}`)
     }
     render() {
        
