@@ -14,7 +14,7 @@ export default class Item extends Component {
           <Accordion onChange={this.onChange} key={index}>
             <Accordion.Panel header={
               <List>
-                <List.Item extra={v.sub}>{v.title}</List.Item>
+                <List.Item extra={`总消耗${v.sub}`}>{v.title}</List.Item>
               </List>
             }>
               <List>

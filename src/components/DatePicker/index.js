@@ -36,15 +36,15 @@ export default class TimerPicker extends Component {
             fetchAdnetworkConsumeReports
         } = this.props
 
-        changeReportDate(beginDate,endDate)
+        //changeReportDate(beginDate,endDate)
         // fetchConsumeSummaryReports()
         const pathname = window.location.pathname
         if (pathname==='/') {
-            fetchConsumeConsumeReports()
+            //fetchConsumeConsumeReports()
         } else if (pathname==='/customer') {
-            fetchConsumeConsumeReports('','')
+            //fetchConsumeConsumeReports('','')
         }
-        fetchAdnetworkConsumeReports()
+       // fetchAdnetworkConsumeReports()
     }
     setModalVisible(modalVisible) {
         this.setState({ modalVisible });

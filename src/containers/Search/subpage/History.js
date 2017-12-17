@@ -5,7 +5,7 @@ export default class History extends Component {
   render() {
     return (
       <div>
-        <SearchHistory />
+        <SearchHistory clearSearchHistory={this.props.clearSearchHistory} />
       </div>
     )
   }

@@ -5,7 +5,21 @@ import SearchInput from '@/components/SearchInput'
 import History from './subpage/History'
 import { List} from 'antd-mobile';
 import {withRouter} from 'react-router-dom'
+import ListItem from '@/components/List'
+import {connect} from 'react-redux'
 
+import {
+    fetchSeachConsumer,
+    clearSearchHistory
+} from '@/actions'
+
+@connect(
+    state=>state,
+    {
+        fetchSeachConsumer,
+        clearSearchHistory
+    }
+)
 @withRouter
 export default class Search extends Component {
     constructor(props) {
@@ -17,19 +31,16 @@ export default class Search extends Component {
     }
     handleSubmit(val){
         if (!val) return;
-        console.log(val)
-        this.setState({
-            flag:!this.state.flag
-        })
+        this.props.fetchSeachConsumer(val)
     }
     render() {
-       
         return (
             <Wrapper>
                 <SearchInput handleSubmit={this.handleSubmit.bind(this)}/>
-                {this.state.flag?<History />:null}
+                {this.state.flag?<History clearSearchHistory={this.props.clearSearchHistory}/>:<ListItem />}
                 
             </Wrapper>
         )
     }
+    
 }

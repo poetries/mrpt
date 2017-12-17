@@ -1,5 +1,5 @@
 export * from './consumeSummaryReports'
 export * from './consumeConsumeReports'
 export * from './changeReportDate'
-export * from './SeachCustomers'
+export * from './search'
 export * from './loginAfter'

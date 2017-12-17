@@ -1,8 +1,8 @@
 /*
  * @Author: poetryxie 
  * @Date: 2017-12-05 10:30:38 
- * @Last Modified by: poetryxie
- * @Last Modified time: 2017-12-12 16:33:37
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2017-12-17 23:15:22
  */
 
 export const MSG_SHOW = 'MSG_SHOW'
@@ -28,3 +28,6 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
 
 export const CHANGE_REPORT_DATE = 'CHANGE_REPORT_DATE'
+
+export const SET_SEARCH_HISTORY = 'SET_SEARCH_HISTORY'
+export const CLEAR_SEARCH_HISTORY = 'CLEAR_SEARCH_HISTORY'
