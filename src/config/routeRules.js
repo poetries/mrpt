@@ -11,13 +11,8 @@ export const routeRules = [
       exact:true
     },
     {
-      path:'/search/:customer_name',
-      component:require('@/components/SearchList').default,
-      exact:true
-    },
-    {
       path:'/customer-detail/:id',
-      component:require('@/components/CustomerDetail').default,
+      component:require('@/containers/CustomerDetail').default,
       exact:true
     },
     {
@@ -30,9 +25,9 @@ export const routeRules = [
 export const navList = [
     {
         path:'/dashboard',
-        text:'首页',
+        text:'概览',
         icon:'home',
-        title:'首页',
+        title:'结算日报',
         component:require('@/containers/Home').default,
         exact:false
     },

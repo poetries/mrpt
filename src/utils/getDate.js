@@ -4,7 +4,8 @@ const formatDate = (val) =>{
     let y = start.getFullYear()
     let m = (start.getMonth() + 1) > 10 ? (start.getMonth() + 1) : '0' + (start.getMonth() + 1)
     let d = start.getDate() > 10 ? start.getDate() : '0' + start.getDate()
-    return y + '-' + m + '-' + d
+    let time = y + '' + m + '' + d
+    return time
 }
   
 const mistiming = (sDate1, sDate2) =>{
@@ -53,9 +54,11 @@ const yesterday = (start, end) =>{
     let timer = timeForMat(1)
     return timer
 }
-const getYesterday = () =>{ 
+
+//  -2前天 -1昨天 0今天 1明天 2后天 3大后天
+const GetDate = (AddDayCount) =>{ 
     var dd = new Date(); 
-    dd.setDate(dd.getDate()-1);//获取AddDayCount天后的日期 
+    dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期 
     var y = dd.getFullYear(); 
     var m = dd.getMonth()+1;//获取当前月份的日期 
     var d = dd.getDate(); 
@@ -65,6 +68,7 @@ const getYesterday = () =>{
         e:time
     }
 }   
+
 const getSevenDays = () =>{
     // 获取最近7天
     let timer = timeForMat(7)
@@ -78,7 +82,8 @@ const getThirtyDays = () =>{
 }
   
 export {
-    getYesterday,
+    GetDate,
     getSevenDays,
-    getThirtyDays
+    getThirtyDays,
+    formatDate
 }

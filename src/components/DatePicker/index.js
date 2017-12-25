@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { DatePicker, List,Flex,Button,Tabs,WhiteSpace  } from 'antd-mobile';
+import { DatePicker, List,Flex,Button,Tabs,WhiteSpace,InputItem  } from 'antd-mobile';
 import {Icon,Row,Col} from 'antd'
-import {Wrapper,ModalWrapper,ButtonWrapper} from './style'
+import {Wrapper,ModalWrapper,ButtonWrapper,EnhanceRow} from './style'
 import {connect} from 'react-redux'
 import moment from 'moment';
 import  {
-    getYesterday,
+    GetDate,
     getSevenDays,
     getThirtyDays,
     formatDate
@@ -24,8 +24,8 @@ export default class TimerPicker extends Component {
             date1:now,
             date2:now,
             modalVisible: false,
-            beginDate:'',
-            endDate:''
+            beginDate:moment().format('YYYY-MM-DD'),
+            endDate:moment().format('YYYY-MM-DD')
         }
     }
     ChangeDate(beginDate,endDate){
@@ -36,15 +36,15 @@ export default class TimerPicker extends Component {
             fetchAdnetworkConsumeReports
         } = this.props
 
-        //changeReportDate(beginDate,endDate)
+        changeReportDate(beginDate,endDate)
         // fetchConsumeSummaryReports()
         const pathname = window.location.pathname
-        if (pathname==='/') {
-            //fetchConsumeConsumeReports()
-        } else if (pathname==='/customer') {
-            //fetchConsumeConsumeReports('','')
+        if (pathname==='/mrpt/dashboard' || pathname.indexOf('customer-detail')!==-1) {
+            fetchConsumeConsumeReports()
+        } else if (pathname==='/mrpt/customer') {
+            fetchConsumeConsumeReports('','')
         }
-       // fetchAdnetworkConsumeReports()
+        pathname.indexOf('customer-detail')===-1?fetchAdnetworkConsumeReports():null
     }
     setModalVisible(modalVisible) {
         this.setState({ modalVisible });
@@ -54,39 +54,41 @@ export default class TimerPicker extends Component {
     }
     render() {
         const tabs = [
-            { title: '昨天', sub: getYesterday() },
-            { title: '最近7天', sub: getSevenDays() },
-            { title: '最近30天', sub: getThirtyDays() },
-            { title: '自定义', sub: 4 }
+            { title: '前天', sub: GetDate(-2)},
+            { title: '昨天', sub: GetDate(-1)},
+            { title: '最近7天', sub: getSevenDays()},
+            { title: '最近30天', sub: getThirtyDays()},
+            { title: '自定义', sub: 5 }
           ];
-        
+         
         return (
             <div>
                 <Tabs tabs={tabs}
-                            initialPage={0}
-                            onTabClick={tab => {
-                                if(tab.sub===4) {
-                                    this.setModalVisible(true)
-                                } else {
-                                    this.ChangeDate(tab.sub.b,tab.sub.e)
-                                }
-                            }}
-                         />
+                    initialPage={0}
+                    onTabClick={tab => {
+                        if(tab.sub===5) {
+                            this.setModalVisible(true)
+                        } else {
+                            this.setState({ date1:tab.sub.b,date2:tab.sub.e})
+                            // this.ChangeDate(tab.sub.b,tab.sub.e)
+                        }
+                    }}
+                />
                 <WhiteSpace />
                 <ModalWrapper
                     title={<span style={{color:'#fff'}}>投放日期</span>}
                     style={{ top: -10}}
-                    bodyStyle={{background:'#f5f5f9'}}
+                    // bodyStyle={{background:'#f5f5f9'}}
                     wrapClassName="投放日期"
                     maskClosable={false}
                     okText='完成'
                     closable={false}
-                    cancelText={<Icon type="arrow-left" />}
-                    maskStyle={{background:'#f5f5f9'}}
+                    cancelText={<Icon type="close" />}
+                    // maskStyle={{background:'#f5f5f9'}}
                     visible={this.state.modalVisible}
                     onOk={() => {
                         this.setModalVisible(false)
-                        //this.ChangeDate(this.state.beginDate,this.state.endDate)
+                        this.ChangeDate(this.state.beginDate,this.state.endDate)
                     }}
                     onCancel={() => {
                         this.setModalVisible(false)
@@ -120,7 +122,16 @@ export default class TimerPicker extends Component {
                         </DatePicker>
                     </Wrapper>
                 </ModalWrapper>
-                
+               <EnhanceRow>
+                    <List>
+                        <List.Item 
+                            extra={ <div>
+                                <span style={{paddingRight:5}}>{moment(this.state.date2).format('YYYY-MM-DD')}</span><Icon type="calendar" />
+                            </div>}
+                        ><span>{moment(this.state.date1).format('YYYY-MM-DD')}</span></List.Item>
+                    </List>        
+                </EnhanceRow>      
+                <WhiteSpace />
             </div>
         )
     }

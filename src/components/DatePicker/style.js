@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Modal} from 'antd'
+import {Modal,Row} from 'antd'
 
 export const Wrapper = styled.div`
     text-align:right;
@@ -48,5 +48,14 @@ export const ModalWrapper = styled(Modal)`
             right: 1px !important;
 
         }
+    }
+`
+
+export const EnhanceRow = styled(Row)`
+    .am-list-content {
+        color:#888 !important;
+    }
+    .am-list-extra {
+        overflow: visible !important;
     }
 `

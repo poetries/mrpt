@@ -7,7 +7,7 @@ import ListCard from './subpage/ListCard'
 import {connect} from 'react-redux'
 import {Wrapper} from './subpage/style'
 import  {
-    getYesterday,
+    GetDate,
     getSevenDays,
     getThirtyDays
 } from '@/utils/getDate'
@@ -45,7 +45,7 @@ export default class Home extends Component {
         )
     }
     componentDidMount(){
-        const time = getYesterday()
+        const time = GetDate(-1)
         this.props.changeReportDate(time.b,time.e)
         // this.props.fetchConsumeSummaryReports()
         // this.props.fetchConsumeConsumeReports()
