@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Tabs,WhiteSpace} from 'antd-mobile';
+import { Tabs,WhiteSpace,Button } from 'antd-mobile';
+import {Icon} from 'antd';
 import Item from './Item'
 
 class DataCardList extends Component {
@@ -41,13 +42,14 @@ class DataCardList extends Component {
                     tabBarPosition="top"
                     renderTab={tab => <span>{tab.title}</span>}
                 >
-                    <div style={{height:'176px',backgroundColor: '#fff' }}>
-                        <Item data={data}/>                        
+                    <div style={{height:'176px',backgroundColor: '#fff' }} ref='test'>
+                        <Item data={data}/>     
                     </div>
                     <div style={{height:'176px',backgroundColor: '#fff' }}>
                         <Item data={data}/>        
                     </div>
                 </Tabs>
+                <Button onClick={()=>console.log(this.refs.test.offsetHeight)}><Icon type="down"/></Button>
             </div>
         );
     }

@@ -49,9 +49,7 @@ export default class TimerPicker extends Component {
     setModalVisible(modalVisible) {
         this.setState({ modalVisible });
     }
-    handleClick(){
-        this.setModalVisible(true)
-    }
+
     render() {
         const tabs = [
             { title: '前天', sub: GetDate(-2)},
@@ -60,7 +58,6 @@ export default class TimerPicker extends Component {
             { title: '最近30天', sub: getThirtyDays()},
             { title: '自定义', sub: 5 }
           ];
-         
         return (
             <div>
                 <Tabs tabs={tabs}
@@ -99,7 +96,7 @@ export default class TimerPicker extends Component {
                             mode="date"
                             extra="Optional"
                             format
-                            value={this.state.date1}
+                            value={new Date(moment(this.state.date1).format('YYYY-MM-DD'))}
                             onChange={date1 => {
                                 this.setState({ date1 })
                                 this.setState({ beginDate:moment(date1).format('YYYYMMDD') })
@@ -112,7 +109,7 @@ export default class TimerPicker extends Component {
                             mode="date"
                             extra="Optional"
                             format
-                            value={this.state.date2}
+                            value={new Date(moment(this.state.date2).format('YYYY-MM-DD'))}
                             onChange={date2 => {
                                 this.setState({ date2 })
                                 this.setState({ endDate: moment(date2).format('YYYYMMDD')})
