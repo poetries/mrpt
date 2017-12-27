@@ -5,18 +5,6 @@ import Item from './Item'
 import {Wrapper} from './Item/style'
 
 class DataCardList extends Component {
-    state = {
-        showList1:[],
-        showList2:[],
-        show1:false,
-        show2:false
-    }
-    loadMoreFn1 = (num=2)=>{
-        this.setState({showList1:this.handleList()&&this.handleList().slice(0,num)})
-    }
-    loadMoreFn2 = (num=2)=>{
-        this.setState({showList2:this.handleList()&&this.handleList().slice(0,num)})
-    }
     handleList() {
         return  [
             {'title': '消耗','sub':'2000￥'},
@@ -57,44 +45,17 @@ class DataCardList extends Component {
                     renderTab={tab => <span>{tab.title}</span>}
                 >
                     <div style={{height:'auto',backgroundColor: '#fff' }} ref='test'>
-                        <Item data={this.state.showList1}/>  
-
-                        {this.state.showList1.length &&
-                            <Button onClick={()=>{
-                                this.setState({show1:!this.state.show1})
-                                this.state.show1?this.loadMoreFn1(5):this.loadMoreFn1(20)
-                            }}>
-                                {this.state.show1
-                                    ?<span>收起<Icon type='up' /></span>
-                                    :<span>展开<Icon type='down' /></span>
-                                }
-                            </Button> 
-                        }  
+                        <Item data={this.handleList()}/>
                     </div>
                     <div style={{height:'auto',backgroundColor: '#fff' }}>
-                        <Item data={this.state.showList2}/> 
-
-                        {this.state.showList1.length &&
-                            <Button onClick={()=>{
-                                this.setState({show2:!this.state.show2})
-                                this.state.show2?this.loadMoreFn2(5):this.loadMoreFn2(20)
-                            }}>
-                                {this.state.show2
-                                    ?<span>收起<Icon type='up'/></span>
-                                    :<span>展开<Icon type='down'/></span>
-                                }
-                            </Button>  
-                        }           
+                        <Item data={this.handleList()}/>
                     </div>
                 </Tabs>
                 
             </Wrapper>
         );
     }
-    componentDidMount(){
-        this.loadMoreFn1(4)
-        this.loadMoreFn2(3)
-    }
+
 }
 
 export default DataCardList;
