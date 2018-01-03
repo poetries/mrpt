@@ -34,7 +34,8 @@ export default class Home extends Component {
       super(props);
       this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
-    render() {       
+    render() {   
+
         return (
             <Wrapper>
                 <DatePicker />

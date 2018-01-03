@@ -8,6 +8,7 @@ import {getInitEnvState} from './config/envStateUtil'
 import './config/Interceptors'
 import 'antd/dist/antd.css';
 import 'antd-mobile/dist/antd-mobile.css';
+import 'react-table/react-table.css'
 import './index.css'
 
 const initState = getInitEnvState()

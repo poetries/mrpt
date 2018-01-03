@@ -14,7 +14,7 @@ export default class Item extends Component {
               <Link to={`/customer-detail/${(Date.now())}`} key={index}>
                 <List key={index}>
                     <List.Item extra={<div>
-                      <Progress percent={v.sub}  showInfo={false} />
+                      <Progress percent={20}  showInfo={false} />
                       <span className='progress-desc'>￥{v.sub}00</span>
                     </div> }>{v.title}</List.Item>
                 </List>
