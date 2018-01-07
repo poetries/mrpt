@@ -13,19 +13,27 @@ import  {
 } from '@/utils/getDate'
 
 
+
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
+
+@connect(
+    state=>({
+      customerDetailTestData:state.customerDetailTestData
+    }),
+    {}
+)
 export default class TimerPicker extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.ChangeDate = this.ChangeDate.bind(this)
         this.state = {
-            date1:now,
-            date2:now,
+            date1:new Date(moment().add('d',-2).format('YYYY-MM-DD')),
+            date2:new Date(moment().add('d',-2).format('YYYY-MM-DD')),
             modalVisible: false,
-            beginDate:moment().format('YYYY-MM-DD'),
-            endDate:moment().format('YYYY-MM-DD')
+            beginDate:moment().format('YYYYMMDD'),
+            endDate:moment().format('YYYYMMDD')
         }
     }
     ChangeDate(beginDate,endDate){
@@ -51,24 +59,38 @@ export default class TimerPicker extends Component {
     }
 
     render() {
+        const sevenDays = {
+            b:moment().add('d',-7).format('YYYYMMDD'),
+            e:moment().add('d',-1).format('YYYYMMDD')
+        }
+        const thirtyDays = {
+            b:moment().add('d',-30).format('YYYYMMDD'),
+            e:moment().add('d',-1).format('YYYYMMDD')
+        }
         const tabs = [
-            { title: '前天', sub: GetDate(-2)},
-            { title: '昨天', sub: GetDate(-1)},
-            { title: '最近7天', sub: getSevenDays()},
-            { title: '最近30天', sub: getThirtyDays()},
-            { title: '自定义', sub: 5 }
+            { title: '前天', sub: moment().add('d',-2).format('YYYYMMDD'),index:1},
+            { title: '昨天', sub: moment().add('d',-1).format('YYYYMMDD'),index:2},
+            { title: '最近7天', sub: sevenDays,index:3},
+            { title: '最近30天', sub: thirtyDays,index:4},
+            { title: '自定义', sub:'',index: 5 }
           ];
         return (
             <div>
                 <Tabs tabs={tabs}
                     initialPage={0}
                     onTabClick={tab => {
-                        if(tab.sub===5) {
+                        // (tab.index === 1 || tab.index===2)&&this.props.customerDetailTestData.data.slice(0,2)
+
+                        // tab.index === 3&&this.props.customerDetailTestData.data.slice(0,7)
+                        // tab.index === 4&&this.props.customerDetailTestData.data.slice(0)
+                        
+                        if(tab.index===5) {
                             this.setModalVisible(true)
                         } else {
                             this.setState({ date1:tab.sub.b,date2:tab.sub.e})
                             // this.ChangeDate(tab.sub.b,tab.sub.e)
                         }
+
                     }}
                 />
                 <WhiteSpace />

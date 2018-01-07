@@ -1,6 +1,7 @@
 import * as ActionTypes from '../constants/'
 import {CALL_API} from '../middleware/api'
 
+
 export const fetchConsumeSummaryReports = () => (dispatch,getState) =>{
 
 	const {reportDate , envObject} = getState()
@@ -25,3 +26,4 @@ export const fetchConsumeSummaryReports = () => (dispatch,getState) =>{
 		}
 	})
 }
+

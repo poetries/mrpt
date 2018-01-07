@@ -11,7 +11,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.cost!=='-')
         },
         switchSortBy:v=> v.cost,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,cost:v.cost}))//对数据进行分组传入echart展示
+        getCustomerDetailList:data=>data&&data.map(v=>v.cost)//对数据进行分组传入echart展示
     },
     {
         header:'曝光', 
@@ -23,7 +23,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.impressionCount!=='-')
         },
         switchSortBy:v=>v.impressionCount,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,impressionCount:v.impressionCount}))  
+        getCustomerDetailList:data=>data&&data.map(v=>v.impressionCount)  
     },
     { 
         header: '点击', 
@@ -35,7 +35,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.clickCount!=='-')
         },
         switchSortBy:v=>`￥${v.clickCount}`,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,clickCount:v.clickCount}))
+        getCustomerDetailList:data=>data&&data.map(v=>v.clickCount)
     },
     { 
         header: '点击均价', 
@@ -47,7 +47,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.costPerClick!=='-')
         },
         switchSortBy:v=>`￥${v.costPerClick}`,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,costPerClick:v.costPerClick}))
+        getCustomerDetailList:data=>data&&data.map(v=>v.costPerClick)
     },
     {
         header:'点击率',
@@ -59,7 +59,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.clickRate!=='-')
         },
         switchSortBy:v=>v.clickRate,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,clickRate:v.clickRate})) 
+        getCustomerDetailList:data=>data&&data.map(v=>v.clickRate)
      },
     {
         header:'下载', 
@@ -71,7 +71,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.downloadCount!=='-')
         },
         switchSortBy:v=>v.downloadCount,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,downloadCount:v.downloadCount}))         
+        getCustomerDetailList:data=>data&&data.map(v=>v.downloadCount)       
     },
     {
         header:'下载成本', 
@@ -83,7 +83,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.costPerDownload!=='-')
         },
         switchSortBy:v=>`￥${v.costPerDownload}`,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,costPerDownload:v.costPerDownload}))               
+        getCustomerDetailList:data=>data&&data.map(v=>v.costPerDownload)             
     },
     {
         header:'曝光下载率', 
@@ -95,7 +95,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.impressionDownloadRate!=='-')
         },
         switchSortBy:v=>v.impressionDownloadRate,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,impressionDownloadRate:v.impressionDownloadRate}))                 
+        getCustomerDetailList:data=>data&&data.map(v=>v.impressionDownloadRate)             
     },
     {
         header:'激活', 
@@ -107,7 +107,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.installCount!=='-')
         },
         switchSortBy:v=>v.installCount,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,installCount:v.installCount}))                 
+        getCustomerDetailList:data=>data&&data.map(v=>v.installCount)                 
     },
     {
         header:'激活成本', 
@@ -119,7 +119,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.costPerInstall!=='-')
         },
         switchSortBy:v=>`￥${v.costPerInstall}`,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,costPerInstall:v.costPerInstall}))                   
+        getCustomerDetailList:data=>data&&data.map(v=>v.costPerInstall)                   
     },
     {
         header:'激活率', 
@@ -131,7 +131,7 @@ export const  AdFields = [
             return data&&data.list.length&&data.list.filter(v=>v.installRate!=='-')
         },
         switchSortBy:v=>v.installRate,
-        getCustomerDetailList:data=>data&&data.map(v=>({date:v.date,installRate:v.installRate}))                 
+        getCustomerDetailList:data=>data&&data.map(v=>v.installRate)                 
     },
    /** {
         header:'注册', 
