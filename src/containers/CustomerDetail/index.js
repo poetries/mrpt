@@ -30,12 +30,12 @@ export default class CustomerDetail extends Component {
     mode: 'top',
     data:[],
     loading:true,
-    showList:[],
+    showFirstList:false,
     label:'花费'
   };
   handleList1(data,tab){
     const list = tab.getCustomerDetailList(data)
-    this.setState({label:tab.header})
+    this.setState({label:tab.header,showFirstList:false})
     //把处理的数据存储到redux中
     this.props.updateChartData(list)
   }
@@ -96,7 +96,7 @@ export default class CustomerDetail extends Component {
       {
           name : this.state.label, 
           type:'line',
-          data : seriesDataforEchart,
+          data : this.state.showFirstList?yyb&&yyb.map(v=>v.cost):seriesDataforEchart,
           itemStyle:{
               normal:{
                   lineStyle:{
@@ -171,10 +171,12 @@ export default class CustomerDetail extends Component {
                             initialPage={0}
                             tabBarPosition="top" 
                             onTabClick={tab=>this.handleList1(yyb,tab)}
+                            onChange={tab=>this.handleList1(yyb,tab)}
                             renderTab={tab => <span>{tab.header}</span>}
                             >
+                            {yyb&&yyb.length>0?<Chart data={chartObj}/>:noResult}
                         </Tabs>
-                        {yyb&&yyb.length>0?<Chart data={chartObj}/>:noResult}
+                        
                         <WhiteSpace />
                         <WhiteSpace />
                         <WhiteSpace />
@@ -202,5 +204,6 @@ export default class CustomerDetail extends Component {
   }
   componentDidMount(){
     this.props.getCustomerDetailTestData()
+    this.setState({showFirstList:true})
   }
 }
